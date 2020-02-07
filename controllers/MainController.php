@@ -4,6 +4,7 @@ namespace brazhnikov\yii2cadastre\controllers;
 
 use Yii;
 use yii\web\Controller;
+use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use brazhnikov\yii2cadastre\AppAssetsBundle;
 use brazhnikov\yii2cadastre\models\Cadastra;
@@ -33,35 +34,46 @@ class MainController extends Controller
         // регистрируем ресурсы:
         AppAssetsBundle::register( $this->view );
         $model = new Cadastra();
-
+        $dataProvider = new ActiveDataProvider([]);
         if ( Yii::$app->request->isPost ) {
             $post = Yii::$app->request->post('Cadastra' );
             $dbResult = $model::find()->where( ['cadastral_number' => $post['cadastral_number']] )->one();
             if ( $dbResult === null ) {
                 $searchResult = Yii::$app->curlAgent->display( $post['cadastral_number'] );
                 $attrs = $searchResult->feature->attrs;
-                //echo var_dump($searchResult->feature->attrs);
-                //exit();
-
                 if ( $searchResult ) {
-
-                    $model->cadastral_number = $attrs->cn;
-                    $model->address          = $attrs->address;
-                    $model->price            = $attrs->cad_cost;
-                    $model->area             = $attrs->area_value;
-
-                    if ( $model->save() ) {
-                        return $this->redirect(['index']);
-                    } else {
-                        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
-                    }
+                    return $this->saveCadastraModel( $model, $attrs );
                 }
             }
         }
 
-        return $this->render('index',[
-            'model' => $model,
-            'datas' => 'asasasasas'
-        ]);
+        return $this->render('index',['model' => $model]);
+    }
+
+    /**
+     * saveCadastraModel
+     * @param $model
+     * @param $attrs
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    private function saveCadastraModel( $model, $attrs ) {
+
+        $model->cadastral_number = $attrs->cn;
+        $model->address          = $attrs->address;
+        $model->price            = $attrs->cad_cost;
+        $model->area             = $attrs->area_value;
+
+        if ( $model->save() ) {
+            $dataProvider = new ActiveDataProvider([
+                'query' => $model::find()->where( ['cadastral_number' => $model->cadastral_number] ),
+                'pagination' => [
+                    'pageSize' => 20,
+                ],
+            ]);
+            return $this->render('results', ['model' => $model, 'dataProvider' => $dataProvider]);
+        } else {
+            throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+        }
     }
 }

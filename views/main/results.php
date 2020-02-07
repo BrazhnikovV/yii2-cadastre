@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ListView;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model brazhnikov\yii2cadastre\models\Cadastra */
@@ -14,4 +14,11 @@ use yii\widgets\ListView;
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'tableOptions' => [
+            'class' => 'table table-striped table-bordered table-sm'
+        ],
+    ]); ?>
 </div>
