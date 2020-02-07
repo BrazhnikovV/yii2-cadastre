@@ -20,7 +20,8 @@ class MainController extends Controller
      * @access public
      * @var $layout - родительская обертка представлений приложения
      */
-    public $layout = 'main';
+    // используется обертка приложения использующего данное расширение
+    // public $layout = 'main';
 
     /**
      * actionIndex
