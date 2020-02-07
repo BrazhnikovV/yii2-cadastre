@@ -27,6 +27,10 @@ class Bootstrap implements BootstrapInterface
             'cadastre' => 'yii2cadastre/main/index',
         ], false);
         /*
+         * Регистрация компонента
+         */
+        $app->setComponents(['curlAgent' => 'brazhnikov\yii2cadastre\components\SearchByCadastraNumbeComponent']);
+        /*
          * Регистрация модуля в приложении
          * (вместо указания в файле frontend/config/main.php
          */

@@ -8,13 +8,13 @@ use yii\db\ActiveRecord;
 /**
  * This is the model class for table "banknotes".
  *
- * @property int $id
+ * @property int    $id
  * @property string $cadastral_number
  * @property string $address
- * @property int $price
- * @property int $area
+ * @property int    $price
+ * @property int    $area
  */
-class Banknotes extends \yii\db\ActiveRecord
+class Cadastra extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -30,7 +30,7 @@ class Banknotes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cadastral_number','address'], 'required'],
+            [['cadastral_number'], 'required'],
             [['price','area'], 'integer'],
         ];
     }
@@ -52,13 +52,13 @@ class Banknotes extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-//            'timestamp' => [
-//                'class' => 'yii\behaviors\TimestampBehavior',
-//                'attributes' => [
-//                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
-//                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
-//                ],
-//            ],
+            'timestamp' => [
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+            ],
         ];
     }
 }

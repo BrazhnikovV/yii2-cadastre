@@ -1,13 +1,17 @@
 <?php
 
-use brazhnikov\yii2cadastre\components\SearchByCadastraNumberWidget;
+use yii\helpers\Html;
+
+/* @var $this yii\web\View */
+/* @var $model brazhnikov\yii2cadastre\models\Cadastra */
 
 ?>
-<?php if ( isset( $datas ) ): ?>
-    <div class="block">
-        <h3 class="red">Вывод тестовых данных</h3>
-        <p><?= $datas ?></p>
-        <p><?= $datas ?></p>
-        <p><?= SearchByCadastraNumberWidget::widget(); ?></p>
-    </div>
-<?php endif; ?>
+<div class="banknotes-create">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
+
+</div>
