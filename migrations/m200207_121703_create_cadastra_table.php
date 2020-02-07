@@ -15,10 +15,12 @@ class m200207_121703_create_cadastra_table extends Migration
     {
         $this->createTable('{{%cadastra}}', [
             'id'               => $this->primaryKey(),
-            'cadastral_number' => Schema::TYPE_STRING . 'NOT NULL',
-            'address'          => Schema::TYPE_STRING . 'NOT NULL',
+            'cadastral_number' => Schema::TYPE_STRING . ' NOT NULL',
+            'address'          => Schema::TYPE_STRING . ' NOT NULL',
             'price'            => 'INTEGER',
-            'area'             => 'INTEGER'
+            'area'             => 'INTEGER',
+            'created_at'       => 'INTEGER NOT NULL',
+            'updated_at'       => 'INTEGER NOT NULL'
         ]);
     }
 

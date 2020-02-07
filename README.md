@@ -27,5 +27,6 @@ Usage
 
 Once the extension is installed, simply use it in your code by  :
 
-```php
-<?= \brazhnikov\cadastre\Bootstrap::widget(); ?>```
+migrate:
+
+./yii migrate --migrationPath=@vendor/brazhnikov/yii2-cadastre/migrations --interactive=0
