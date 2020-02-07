@@ -19,6 +19,13 @@ or add
 "require": {
         "brazhnikov/yii2-cadastre": "~1.0.6"
     },
+
+"repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/BrazhnikovV/yii2-cadastre"
+        }
+    ]
 ```
 
 to the require section of your `composer.json` file.
