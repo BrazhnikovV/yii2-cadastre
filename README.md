@@ -16,7 +16,9 @@ php composer.phar require --prefer-dist brazhnikov/yii2-cadastre "*"
 or add
 
 ```
-"brazhnikov/yii2-cadastre": "*"
+"require": {
+        "brazhnikov/yii2-cadastre": "~1.0.6"
+    },
 ```
 
 to the require section of your `composer.json` file.
