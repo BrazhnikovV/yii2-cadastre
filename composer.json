@@ -1,0 +1,30 @@
+{
+    "name": "brazhnikov/yii2-cadastre",
+    "description": "Расширение для обращения к базе росреестра",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "BrazhnikovV",
+            "email": "brazhnikov_ve@mail.ru"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "extra": {
+        "bootstrap": "brazhnikov\\yii2cadastre\\Bootstrap"
+    },
+    "autoload": {
+        "psr-4": {
+            "brazhnikov\\yii2cadastre\\": ""
+        }
+    },
+    "repositories":[
+        {
+            "type": "git",
+            "url": "https://github.com/BrazhnikovV/yii2-cadastre"
+        }
+    ]
+}
